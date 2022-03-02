@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for product in latest_product_list %}
+        
+    <div>
+        {{product.id}}
+        <h3>Pet Name:</h3> {{product.pet_id.pet_name}} 
+            <h3>Pet Age:</h3> {{product.pet_id.pet_age}} 
+            <h3>Pet Type:</h3> {{product.pet_id.pet_type}} 
+            <h3>Pet Gender:</h3> {{product.pet_id.pet_gender}} 
+        
+        <form action={% url 'deleteitem' %} method="post">
+            {% csrf_token %}
+            <input type="Hidden" value="{{product.id}}" name="delproduct">
+            <input  type="submit" value="Delete Item">
+        </form> 
+    
+    </div>   
+    {%endfor%}     
+</body>
+</html>

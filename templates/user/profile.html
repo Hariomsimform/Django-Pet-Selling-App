@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>logo</h1>
+    {% if user.user_profile.user_type == "Buyer"%}
+        <li><a href="/productpage/">See More Pet</a></li>
+        <li><a href="/view/cart">View Cart</a></li>
+        <li><a href="/about/{{user.id}}">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+    {%else%}
+        <li><a href="/petform/">Add More Pet</a></li>
+        <li><a href="/pet/list">Your Pet List</a></li>
+        <li><a href="/about/{{user.id}}">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+
+    {%endif%}    
+
+    <div>
+        {% for user in user_detail %}
+            <li>{{ user}}</li>
+
+        {% endfor %}
+    </div>
+    <div><h3>USER DETAIL</h3></div>
+    {% if user.is_authenticated %}
+    <tr>
+        <td>{{user.user_profile.user_type}}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+    </tr>
+
+    {% endif %}
+    
+    
+</body>
+</html>
